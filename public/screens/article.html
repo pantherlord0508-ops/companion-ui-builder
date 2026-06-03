@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Source+Serif+4:ital,wght@0,400;0,600;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#f7f9fb",
+                      "surface-bright": "#f7f9fb",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#2d3133",
+                      "on-tertiary-fixed": "#351002",
+                      "primary-fixed-dim": "#afc8f0",
+                      "error": "#ba1a1a",
+                      "tertiary": "#110200",
+                      "surface-variant": "#e0e3e5",
+                      "tertiary-fixed": "#ffdbce",
+                      "surface-container": "#eceef0",
+                      "on-secondary-fixed-variant": "#004f4f",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "on-surface-variant": "#43474e",
+                      "tertiary-container": "#391303",
+                      "outline": "#74777f",
+                      "secondary-fixed-dim": "#76d6d5",
+                      "surface-tint": "#476083",
+                      "surface-container-high": "#e6e8ea",
+                      "outline-variant": "#c4c6cf",
+                      "on-primary-fixed-variant": "#2f486a",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#6f88ad",
+                      "on-surface": "#191c1e",
+                      "secondary-fixed": "#93f2f2",
+                      "on-background": "#191c1e",
+                      "surface-container-highest": "#e0e3e5",
+                      "primary-fixed": "#d4e3ff",
+                      "on-secondary-fixed": "#002020",
+                      "tertiary-fixed-dim": "#fdb69a",
+                      "on-tertiary-fixed-variant": "#6b3a25",
+                      "secondary": "#006a6a",
+                      "surface-dim": "#d8dadc",
+                      "surface-container-low": "#f2f4f6",
+                      "on-secondary-container": "#006e6e",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#afc8f0",
+                      "inverse-on-surface": "#eff1f3",
+                      "secondary-container": "#90efef",
+                      "on-tertiary-container": "#b5785f",
+                      "primary-container": "#001f3f",
+                      "primary": "#000613",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#001c3a",
+                      "background": "#f7f9fb"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "max-width": "1200px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "label-caps": ["JetBrains Mono"],
+                      "display-lg": ["Montserrat"],
+                      "label-sm": ["JetBrains Mono"],
+                      "headline-md": ["Montserrat"],
+                      "body-lg": ["Source Serif 4"],
+                      "body-md": ["Source Serif 4"],
+                      "display-lg-mobile": ["Montserrat"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "30px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .blueprint-grid {
+            background-image: radial-gradient(circle, #c4c6cf 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .reading-progress {
+            width: 0%;
+            height: 4px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 60;
+        }
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Reading Progress Bar -->
+<div class="reading-progress bg-secondary" id="progress-bar"></div>
+<!-- Navigation Bar -->
+<nav class="bg-surface/70 dark:bg-primary/70 backdrop-blur-md border-b border-outline-variant docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="anchor">anchor</span>
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">MARITIME TECH</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Latest Research</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Marine Engineering</a>
+<a class="font-label-caps text-label-caps text-secondary font-bold border-b-2 border-secondary" href="#">Autonomous Vessels</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</nav>
+<main class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop pt-12">
+<!-- Article Header -->
+<header class="max-w-[800px] mx-auto mb-12">
+<div class="mb-6">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-[0.2em]">Engineering Journal // Vol 42.04</span>
+</div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-8 leading-tight">
+                The Future of Autonomous Deep-Sea Exploration
+            </h1>
+<div class="flex items-center justify-between py-6 border-y border-outline-variant">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant">
+<img alt="Author" class="w-full h-full object-cover" data-alt="A professional headshot of a senior maritime engineer with a short beard and focused expression. The lighting is crisp and academic, set against a blurred background of a technical library or laboratory. The overall aesthetic is professional, corporate, and trustworthy, using a cool blue and gray color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUDlO3S3OWInWxjl_Eu8lvBtTg1LkTMKWs1TBHPZccoMx1vqp5gznUD8c8HBJ5Ip_JNqLzwwqKagphST1VOY1FTG3VIw5kCk82pUTDG2cM3yY9vpWw7lJDvgRdR46LJTz9lnaYhR9pG2eXFQx1hbiRa8EGyfrsFaZfUsEdFI0eY72wWxhYLqa4Lu4juN7xUGCS0256WkYrqtpa6YyaGuq6avI4kbXgXBW2zZenK9HU_YVs9XHvXTwbnM1Asmr0Fy5iX6LXke25G8nt"/>
+</div>
+<div>
+<a class="font-headline-md text-[18px] text-primary hover:text-secondary transition-colors block leading-tight" href="#">Dr. Alistair Thorne</a>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lead Researcher, Oceanic Robotics Institute</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Technical Diagram Hero -->
+<figure class="mb-16">
+<div class="relative w-full aspect-[21/9] bg-surface-container-highest rounded-xl border border-outline-variant overflow-hidden blueprint-grid">
+<img alt="Deep-sea drone" class="w-full h-full object-cover opacity-80 mix-blend-multiply" data-alt="A high-tech, futuristic deep-sea autonomous drone being deployed into the dark navy ocean depths. The drone features complex structural engineering details, glowing teal light sensors, and carbon-fiber hulls. The lighting creates high contrast between the glowing technical components and the vast, dark abyssal environment. The style is a mix of cinematic photography and technical blueprint clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuBIC7dGSyMy-Y1E7_MZN8urflYsnoi447VmQ2vfqI2ac73HYyZpkBApyNu6jAXxY_v9HRhNXMIa-DMh63yL_liELen-hwpOXdyrKIhggL_v07jfIyLJv1r4jJfuAN7LZF9iwyhxmF68dWzO8DTmG0f4A8-IEeFumCdTAzxk2GCa5OnHo2dljNfjXNbzAVMWOuiGavuzn7k5TzN3Gs-51M4e7cEDA7-THcoJUS94JUved6ZQHVBROX9gHh7ksZB7pCrqeCB1ZAr5yS"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-6 left-6 flex gap-4">
+<span class="bg-primary px-3 py-1 text-white font-label-caps text-[10px]">FIG 4.2: SEAWOLF X-1</span>
+<span class="bg-secondary px-3 py-1 text-white font-label-caps text-[10px]">AUTONOMOUS SYSTEM</span>
+</div>
+</div>
+<figcaption class="mt-4 font-label-sm text-label-sm text-on-surface-variant italic max-w-[800px] mx-auto text-center">
+                Composite visualization of the SeaWolf X-1 deployment sequence in the Mariana Trench, showing the primary sensor array activation.
+            </figcaption>
+</figure>
+<!-- Main Content Area with Sidebar -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter max-w-max-width mx-auto">
+<!-- Long-form Text -->
+<article class="lg:col-span-8 article-content">
+<p class="font-body-lg text-body-lg text-on-surface first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-primary">
+                    The vast, unmapped expanses of our oceans represent the final frontier of planetary exploration. Recent breakthroughs in autonomous navigation and deep-sea propulsion are finally peeling back the curtain on the Hadal zone. For decades, the extreme pressures of the deep ocean—exceeding 1,000 atmospheres—have limited our presence to a handful of heavily armored, tethered vehicles.
+                </p>
+<h2 class="font-headline-md text-headline-md text-primary mt-12 mb-4">I. The Shift to Decentralized Autonomy</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Unlike traditional ROVs (Remotely Operated Vehicles), the next generation of submersibles relies on edge-computing to make real-time navigational decisions without the latency of a surface umbilical. This decentralized approach allows for "swarm" deployments, where multiple small units map a seabed area collectively.
+                </p>
+<div class="my-8 p-6 bg-surface-container-low border-l-4 border-secondary">
+<span class="font-label-caps text-label-caps text-secondary block mb-2">TECHNICAL SPECIFICATION</span>
+<p class="font-body-md text-body-md font-bold text-primary italic">
+                        "The integration of solid-state lithium batteries with ceramic pressure shells has extended mission durations from 4 hours to over 36 hours at 6,000-meter depths."
+                    </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Propulsion remains the primary energy drain. We are currently testing bio-mimetic soft actuators that pulse like cephalopods, offering a 40% increase in efficiency over traditional screw propellers in high-density, low-visibility conditions.
+                </p>
+<h2 class="font-headline-md text-headline-md text-primary mt-12 mb-4">II. AI-Driven Geological Analysis</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    The data density required for mineral mapping is staggering. By leveraging onboard neural networks, the SeaWolf X-1 can identify rare earth mineral signatures from raw sonar data and adjust its flight path to prioritize high-yield zones, significantly reducing the carbon footprint of oceanic research.
+                </p>
+<div class="grid grid-cols-2 gap-4 my-8">
+<div class="border border-outline-variant p-4 rounded-lg bg-white">
+<span class="block font-label-caps text-[10px] text-on-surface-variant mb-1">DATA THROUGHPUT</span>
+<span class="block font-headline-md text-headline-md text-secondary">4.2 GB/s</span>
+<div class="w-full bg-surface-container h-1 mt-2">
+<div class="bg-secondary h-full w-[85%]"></div>
+</div>
+</div>
+<div class="border border-outline-variant p-4 rounded-lg bg-white">
+<span class="block font-label-caps text-[10px] text-on-surface-variant mb-1">DIVE PRECISION</span>
+<span class="block font-headline-md text-headline-md text-primary">+/- 0.05m</span>
+<div class="w-full bg-surface-container h-1 mt-2">
+<div class="bg-primary h-full w-[98%]"></div>
+</div>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    As we look toward 2030, the goal is a permanent, autonomous sub-sea station that serves as a docking hub for these explorers, creating a perpetual presence in the abyss.
+                </p>
+</article>
+<!-- Technical Sidebar -->
+<aside class="lg:col-span-4 space-y-8">
+<div class="bg-white border border-outline-variant p-6 rounded-lg">
+<h3 class="font-label-caps text-label-caps text-primary mb-4 border-b border-outline-variant pb-2">GLOSSARY</h3>
+<ul class="space-y-4">
+<li>
+<span class="font-label-caps text-[11px] text-secondary block">HADAL ZONE</span>
+<p class="font-body-md text-sm text-on-surface-variant">The deepest region of the ocean, lying within oceanic trenches from 6,000 to 11,000 meters.</p>
+</li>
+<li>
+<span class="font-label-caps text-[11px] text-secondary block">EDGE COMPUTING</span>
+<p class="font-body-md text-sm text-on-surface-variant">Onboard data processing to reduce reliance on remote satellite uplinks during deep dives.</p>
+</li>
+<li>
+<span class="font-label-caps text-[11px] text-secondary block">BIO-MIMETIC</span>
+<p class="font-body-md text-sm text-on-surface-variant">Engineering inspired by biological systems found in nature, such as squid propulsion.</p>
+</li>
+</ul>
+</div>
+<div class="bg-primary text-white p-6 rounded-lg blueprint-grid">
+<span class="font-label-caps text-label-caps text-secondary-fixed block mb-2">UPCOMING LECTURE</span>
+<h4 class="font-headline-md text-[20px] mb-4">Sub-Sea Structural Engineering Conference</h4>
+<p class="font-body-md text-sm text-outline-variant mb-6">Join Dr. Thorne for a live demonstration of the SeaWolf propulsion system in Oslo, 2024.</p>
+<button class="w-full bg-secondary text-white py-3 font-label-caps text-label-caps hover:brightness-110 transition-all">REGISTER NOW</button>
+</div>
+</aside>
+</div>
+<!-- Related Research -->
+<section class="mt-24 mb-12">
+<div class="flex justify-between items-end mb-8 border-b border-outline-variant pb-4">
+<h2 class="font-headline-md text-headline-md text-primary">Related Research</h2>
+<a class="font-label-caps text-label-caps text-secondary hover:underline flex items-center gap-1" href="#">
+                    VIEW ARCHIVE <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Related Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-video bg-surface-container-high mb-4 overflow-hidden rounded-lg border border-outline-variant">
+<img alt="Related research" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A macro close-up of a robotic arm performing intricate assembly tasks in a clean-room laboratory. The lighting is sterile and clinical, emphasizing the precision and high-tech nature of the engineering. The color palette is dominated by whites, grays, and metallic silver, with subtle teal accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVaHsC8ysmhyQwTTwfk-UsCsK32Ls27KH09NrVp72d_kzIKZ53FtTkvZEHm0M2WDtgW_kIF774WKcHEUxQv2gpJW6S6YCENEdT72rkOo6NCAYUNhBUpb476d1J5FfeXO2d_GlAR7xDl_cH-lMQJLh4KbqLPBkI-9sH1lQOATFhzRnKE8Rmy4OM5WizmsMRlw_crpuNLKRuoFVlFO4pCUCrsDcxprtGarOtk6u7R8LBj9zsL1i9XICgCTwXSAkFtPMeMmw6l_pzWCUg"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">JAN 2024 // ENGINEERING</span>
+<h3 class="font-headline-md text-[18px] text-primary group-hover:text-secondary transition-colors mt-2">Structural Integrity of 3D Printed Titanium Hulls</h3>
+</div>
+<!-- Related Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-video bg-surface-container-high mb-4 overflow-hidden rounded-lg border border-outline-variant">
+<img alt="Related research" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-definition visualization of a global underwater network of sensors and data nodes connected by glowing digital lines across the ocean floor. The perspective is from deep underwater, with particles of marine snow drifting through beams of artificial light. The mood is vast, complex, and technologically profound." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRcoCyYR4azplH6rtduAjHEKu8NqMrwkGJtifr69zoQSV9KBKdCX733QAnUldQMtUjZZGH8Zk1XZ3KS6GTnmCdUO7zN0HlizRbkEUYz9bhv92lmRpN67wDg3QT1eniZr8MCOC94w-_RWmUcZ7hUaiPGJK79i_2YAhIQWScuVsSUmyqatTz_JLM5o1UwYYTiE1wtd-n8yiVn4iO_fYa0lcSsds5BTwlgSltxCoZzh7hBY0PYM2CeZ3GwaEcygV-p5zPbfihBPkTcag6"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">DEC 2023 // DATA SCIENCE</span>
+<h3 class="font-headline-md text-[18px] text-primary group-hover:text-secondary transition-colors mt-2">Neural Networks in Turbid Water Environments</h3>
+</div>
+<!-- Related Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-video bg-surface-container-high mb-4 overflow-hidden rounded-lg border border-outline-variant">
+<img alt="Related research" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A laboratory setting showing various computer screens filled with complex code and data visualizations of ocean currents and pressure gradients. The foreground features a sleek, minimalist hardware unit with blinking indicator lights. The lighting is low-key, typical of a focused research hub, using navy and teal tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_DNs2F6MRM6bHeNtoscZQf9RfhAc862WHQV6gOGXJjeiZYidKp2N5aucK6IJ0O_iLbtpSi2n4vcZ1P5dP7ub_NAsMB8xMV8QWSPhiOtPFtpxATHK5EHx96vkQMUlIV773goJ4DeeLe0h0Irez7uEUOan_Hc-Y1Ia_kTQLGLBHGKopbKjPh8GshweKy9kTSxbuayczlhi7mcjnogrIGQKtLyzNnOB8AG5vzGSkSPNLxzF_ixZtJi4-Xi3b6pKGLSTllDUUOo2YhRf_"/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">NOV 2023 // ROBOTICS</span>
+<h3 class="font-headline-md text-[18px] text-primary group-hover:text-secondary transition-colors mt-2">Synchronized Swarm Control Algorithms</h3>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-20 border-t border-outline-variant bg-surface-container-lowest py-12 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="anchor">anchor</span>
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">MARITIME TECH</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
+                    © 2024 Institute of Maritime Technologies. Academic Excellence in Engineering.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-4">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Research Ethics</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Publication Guidelines</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Navigation Shell -->
+<div class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface border-t border-outline-variant">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="home_storage">home_storage</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-2">
+<span class="material-symbols-outlined" data-icon="explore" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label-sm text-label-sm mt-1">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span class="font-label-sm text-label-sm mt-1">Saved</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</div>
+</div>
+<script>
+        // Reading progress interaction
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+
+        // Micro-interaction for hover states
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

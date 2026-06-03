@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Source+Serif+4:wght@400;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f7f9fb",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "on-tertiary-fixed": "#351002",
+                    "primary-fixed-dim": "#afc8f0",
+                    "error": "#ba1a1a",
+                    "tertiary": "#110200",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary-fixed": "#ffdbce",
+                    "surface-container": "#eceef0",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#43474e",
+                    "tertiary-container": "#391303",
+                    "outline": "#74777f",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "surface-tint": "#476083",
+                    "surface-container-high": "#e6e8ea",
+                    "outline-variant": "#c4c6cf",
+                    "on-primary-fixed-variant": "#2f486a",
+                    "on-primary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#6f88ad",
+                    "on-surface": "#191c1e",
+                    "secondary-fixed": "#93f2f2",
+                    "on-background": "#191c1e",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed": "#d4e3ff",
+                    "on-secondary-fixed": "#002020",
+                    "tertiary-fixed-dim": "#fdb69a",
+                    "on-tertiary-fixed-variant": "#6b3a25",
+                    "secondary": "#006a6a",
+                    "surface-dim": "#d8dadc",
+                    "surface-container-low": "#f2f4f6",
+                    "on-secondary-container": "#006e6e",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#afc8f0",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary-container": "#90efef",
+                    "on-tertiary-container": "#b5785f",
+                    "primary-container": "#001f3f",
+                    "primary": "#000613",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#001c3a",
+                    "background": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "max-width": "1200px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-caps": ["JetBrains Mono"],
+                    "display-lg": ["Montserrat"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-md": ["Montserrat"],
+                    "body-lg": ["Source Serif 4"],
+                    "body-md": ["Source Serif 4"],
+                    "display-lg-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "30px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .technical-grid {
+            background-image: linear-gradient(to right, rgba(116, 119, 127, 0.1) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(116, 119, 127, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container">
+<!-- TopAppBar -->
+<header class="bg-surface/70 dark:bg-primary/70 backdrop-blur-md border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-max-width mx-auto h-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="anchor">anchor</span>
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary dark:text-primary-fixed">MARITIME TECH</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="text-secondary dark:text-secondary-fixed font-bold border-b-2 border-secondary h-full flex items-center px-1" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200 font-label-caps text-label-caps" href="#">Research</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200 font-label-caps text-label-caps" href="#">Publications</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200 font-label-caps text-label-caps" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</button>
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<main class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-8 technical-grid">
+<!-- Featured Research Hero -->
+<section class="relative mb-16 group overflow-hidden bg-primary rounded-lg border border-outline-variant">
+<div class="grid md:grid-cols-12 items-stretch">
+<div class="md:col-span-7 relative h-[400px] md:h-[500px]">
+<img alt="Autonomous research vessel" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="A futuristic, sleek autonomous maritime research vessel cutting through dark, deep blue ocean waters during the golden hour. The ship features minimalist white hull designs with integrated technical sensor arrays. The atmosphere is professional and high-tech, using a palette of deep navy, clean whites, and subtle teal lighting accents that emphasize engineering precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdXvK0Ca2jNn2WiWmFYi9Xa5dERY3VHuOYaYLS9Sm71Emtjb2oIdSVzDO6YbK6Zq1UeGDKrzK7QgmikCIkFybImYpeNsvHjtjI_fr-BFbLKCPdh_NoKB0awCH_CG5x1ynpemMSqCOgLH9wfUoojAlfAkXU7OPr5oqSwPRlnaJULMZbuJo8cBeYOCL9pK1Qr6q6ZjvZz_3hITR3YSuts60ZAYubilm_WZp41YlsDitRtZHzRrvayI0IlPfRxA2RLmX1QN3aA-QFZu4b"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-transparent to-transparent"></div>
+</div>
+<div class="md:col-span-5 p-8 md:p-12 flex flex-col justify-center bg-primary text-white">
+<span class="font-label-caps text-label-caps text-secondary-fixed mb-4">CASE STUDY #4290</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 text-white leading-tight">Autonomous Navigation in Arctic Corridors</h1>
+<p class="font-body-lg text-body-lg text-outline-variant mb-8 opacity-90">An in-depth analysis of AI-driven obstacle avoidance systems for unmanned vessels operating in high-density ice conditions.</p>
+<div class="flex gap-4">
+<button class="bg-secondary-fixed text-on-secondary-fixed px-6 py-3 font-bold flex items-center gap-2 hover:brightness-110 transition-all">
+                            Read Full Paper
+                            <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="border border-outline-variant text-white px-6 py-3 font-bold hover:bg-white/10 transition-all font-label-caps text-label-caps">
+                            Archive
+                        </button>
+</div>
+</div>
+</div>
+<!-- Technical Overlay -->
+<div class="absolute top-4 right-4 text-secondary-fixed/30 font-label-sm text-label-sm pointer-events-none">
+                COORD: 78.2232° N, 15.6267° E<br/>STATUS: ACTIVE_FEED
+            </div>
+</section>
+<!-- Trending Now Horizontal Scroll -->
+<section class="mb-16">
+<div class="flex items-center gap-4 mb-6 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="trending_up">trending_up</span>
+<h2 class="font-label-caps text-label-caps text-primary tracking-widest">TRENDING RESEARCH</h2>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+<button class="flex-shrink-0 bg-surface-container-high hover:bg-secondary-container text-on-surface-variant hover:text-on-secondary-container px-5 py-2 rounded-full border border-outline-variant transition-colors flex items-center gap-2 font-label-sm text-label-sm">
+                    #Hydrodynamics
+                </button>
+<button class="flex-shrink-0 bg-surface-container-high hover:bg-secondary-container text-on-surface-variant hover:text-on-secondary-container px-5 py-2 rounded-full border border-outline-variant transition-colors flex items-center gap-2 font-label-sm text-label-sm">
+                    #AIAtSea
+                </button>
+<button class="flex-shrink-0 bg-surface-container-high hover:bg-secondary-container text-on-surface-variant hover:text-on-secondary-container px-5 py-2 rounded-full border border-outline-variant transition-colors flex items-center gap-2 font-label-sm text-label-sm">
+                    #GreenPropulsion
+                </button>
+<button class="flex-shrink-0 bg-surface-container-high hover:bg-secondary-container text-on-surface-variant hover:text-on-secondary-container px-5 py-2 rounded-full border border-outline-variant transition-colors flex items-center gap-2 font-label-sm text-label-sm">
+                    #OceanData
+                </button>
+<button class="flex-shrink-0 bg-surface-container-high hover:bg-secondary-container text-on-surface-variant hover:text-on-secondary-container px-5 py-2 rounded-full border border-outline-variant transition-colors flex items-center gap-2 font-label-sm text-label-sm">
+                    #SubseaRobotics
+                </button>
+<button class="flex-shrink-0 bg-surface-container-high hover:bg-secondary-container text-on-surface-variant hover:text-on-secondary-container px-5 py-2 rounded-full border border-outline-variant transition-colors flex items-center gap-2 font-label-sm text-label-sm">
+                    #MarineEcology
+                </button>
+<button class="flex-shrink-0 bg-surface-container-high hover:bg-secondary-container text-on-surface-variant hover:text-on-secondary-container px-5 py-2 rounded-full border border-outline-variant transition-colors flex items-center gap-2 font-label-sm text-label-sm">
+                    #RenewableWave
+                </button>
+</div>
+</section>
+<!-- Content Feed Layout -->
+<div class="grid md:grid-cols-12 gap-gutter">
+<!-- Latest Blog Posts Feed (8 Columns) -->
+<div class="md:col-span-8 space-y-12">
+<div class="flex items-center justify-between border-b border-primary mb-8 pb-4">
+<h3 class="font-headline-md text-headline-md text-primary">Latest Analysis</h3>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+</button>
+<button class="p-2 border border-primary bg-primary text-white">
+<span class="material-symbols-outlined" data-icon="view_list">view_list</span>
+</button>
+</div>
+</div>
+<!-- Blog Post Item 1 -->
+<article class="flex flex-col md:flex-row gap-8 group">
+<div class="md:w-1/3 aspect-[4/3] overflow-hidden bg-surface-container border border-outline-variant">
+<img alt="Advanced propulsion system" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A high-density close-up of a complex marine propulsion system, showcasing titanium alloys and blue LED sensor indicators. The engineering details are crisp and clear, presented in a clinical, bright laboratory setting with soft diffuse lighting. The aesthetic is extremely technical, featuring high-contrast metallic surfaces and structured geometric lines, evoking themes of maritime innovation and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXlLKGE5Tn54Gr8aP3bS0NK5kR41arVSQ7I5cMjGX5SAxkbvJM2BF9mm7VjTw5nAhuyN0nvsdfVoeNvPdVleP-8dXRaUvuOmt1aIVmaAQILuk-zhBtY1DYyyj4aircEre5RDY9am4eQPyIILCg1CPpvkzAu0Qyfxy45Dj13S6Ggr1wHmnQoTjhSonoNt1h6rhjOolaqe3GJi0fVOBEuCU3-xMGQqmVX7fAWtBAlZ6BOvD17Zt1zFkdgfaIcSBvtViHSgK8vyJGj0yD"/>
+</div>
+<div class="md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-4 mb-3 font-label-sm text-label-sm text-on-surface-variant">
+<span class="font-label-caps text-secondary">MARINE ENGINEERING</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span> 12 Min Read</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-primary mb-3 group-hover:text-secondary transition-colors leading-tight">The Evolution of Hydrogen-Based Power Systems in Commercial Shipping</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-3">Examining the structural requirements and safety protocols for integrating large-scale hydrogen fuel cells into modern cargo vessels.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-label-sm">EA</div>
+<span class="font-label-sm text-label-sm font-bold">Dr. Elias Aris</span>
+<span class="text-outline mx-2">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 24, 2024</span>
+</div>
+</div>
+</article>
+<!-- Blog Post Item 2 -->
+<article class="flex flex-col md:flex-row gap-8 group">
+<div class="md:w-1/3 aspect-[4/3] overflow-hidden bg-surface-container border border-outline-variant">
+<img alt="3D ocean floor map" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A sophisticated digital visualization of a high-resolution 3D bathymetric map of the ocean floor. The image shows glowing topographical contours in shades of teal and electric blue against a deep black void. Data points and technical metadata are overlaid in a monospaced font, giving it the appearance of an advanced research display. The overall mood is scholarly, mysterious, and technologically superior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFHvU-WVG0_g5uUEPTRyhXjMi-UuUs59pVlQJUgeKjxEE9zwiy6zwO6GaMbAi0jrp6rUsyTCkx_WHa9KJAM-nDiGg8jolITOQVP7W3zKpuZusoAP8EFEbkHxYgtSf8tmlcx4NDvUAjO9PHLQhGdQou_4xTNKgNn4CJFnkedVajBboKCh8uC2CEp2j2ol_HF-KKmJD0ywy-wB5c_SfElpUMbLOxwqVCHYyoYel8N2Z1qOCwCs-GNJrLuGzzvWorfKuwtWuSEtcWZ-1t"/>
+</div>
+<div class="md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-4 mb-3 font-label-sm text-label-sm text-on-surface-variant">
+<span class="font-label-caps text-secondary">OCEAN DATA</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span> 8 Min Read</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-primary mb-3 group-hover:text-secondary transition-colors leading-tight">Real-time Bathymetry: Leveraging Satellite Constellations for Deep-Sea Mapping</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-3">How new low-earth orbit satellites are revolutionizing our understanding of deep-ocean topography through microwave altimetry.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-label-sm">SJ</div>
+<span class="font-label-sm text-label-sm font-bold">Sarah Jenkins</span>
+<span class="text-outline mx-2">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 21, 2024</span>
+</div>
+</div>
+</article>
+<!-- Blog Post Item 3 -->
+<article class="flex flex-col md:flex-row gap-8 group">
+<div class="md:w-1/3 aspect-[4/3] overflow-hidden bg-surface-container border border-outline-variant">
+<img alt="Computational fluid dynamics" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A stunning computational fluid dynamics (CFD) simulation showing the turbulent flow of water around a ship's hull. The visualization uses a spectrum of vibrant colors—from deep reds at high pressure points to cool teals at low pressure—to represent velocity vectors. The background is a clean, neutral gray, emphasizing the scientific and mathematical beauty of hydrodynamics. The style is modern, data-driven, and highly professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuDy5JfCbLJqgabBs6NYQbxVERJekcD1HuomozrNNN2ttbRj0T1wJA82nR9UHzDD_qPliYCtZWF2qsKMGnNd0ZGWxZ3wZVT4CQ_F2H1QJ6v1VYo-T6Y8Ml5pCZCqpuHMa1RJ8FKSstWvIWpICh6LVIGnecTh99hvbXeIModClBPGFL92fsTfBKwxrlNfyxVYeJ_wQCfOyfpRQbXEeLDc2NHnnYFepheH6KA6DlgZ1cw9uPnLAkrpzFsWxEkmb-iwuuKgmyvoRgz3sl"/>
+</div>
+<div class="md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-4 mb-3 font-label-sm text-label-sm text-on-surface-variant">
+<span class="font-label-caps text-secondary">HYDRODYNAMICS</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span> 15 Min Read</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-primary mb-3 group-hover:text-secondary transition-colors leading-tight">Optimizing Hull Geometry for Minimal Cavitation in High-Speed Logistics</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-3">A mathematical approach to reducing drag and cavitation through generative design and bio-mimetic surface textures.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-label-sm">LM</div>
+<span class="font-label-sm text-label-sm font-bold">Lukas Muller</span>
+<span class="text-outline mx-2">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 18, 2024</span>
+</div>
+</div>
+</article>
+<div class="flex justify-center pt-8">
+<button class="border-2 border-primary text-primary px-12 py-3 font-bold hover:bg-primary hover:text-white transition-all font-label-caps text-label-caps">
+                        Load More Articles
+                    </button>
+</div>
+</div>
+<!-- Sidebar (4 Columns) -->
+<aside class="md:col-span-4 space-y-12">
+<!-- Research Categories (NavigationDrawer inspired) -->
+<div class="bg-surface-container-low p-6 border border-outline-variant">
+<h3 class="font-label-caps text-label-caps text-primary border-b border-primary pb-2 mb-6">CATEGORIES</h3>
+<nav class="space-y-2">
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant transition-transform hover:translate-x-1 font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="science">science</span>
+                            Latest Research
+                        </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant transition-transform hover:translate-x-1 font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="engineering">engineering</span>
+                            Marine Engineering
+                        </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant transition-transform hover:translate-x-1 font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="directions_boat">directions_boat</span>
+                            Autonomous Vessels
+                        </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant transition-transform hover:translate-x-1 font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="eco">eco</span>
+                            Green Propulsion
+                        </a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-surface-variant transition-transform hover:translate-x-1 font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="database">database</span>
+                            Ocean Data
+                        </a>
+</nav>
+</div>
+<!-- Newsletter / Call to Action -->
+<div class="bg-primary p-8 text-white relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-4">Engineering Insights</h3>
+<p class="font-body-md text-body-md text-outline-variant mb-6">Join 15,000+ maritime professionals receiving our weekly technical briefing.</p>
+<form class="space-y-4">
+<input class="w-full bg-white/10 border-b border-white text-white p-3 font-label-sm placeholder:text-white/40 focus:outline-none focus:bg-white/20 transition-all" placeholder="Institutional Email" type="email"/>
+<button class="w-full bg-secondary-fixed text-on-secondary-fixed py-3 font-bold hover:brightness-110 transition-all">
+                                SUBSCRIBE
+                            </button>
+</form>
+</div>
+<!-- Background Pattern -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 border border-white/10 rotate-45 pointer-events-none"></div>
+</div>
+<!-- Editor's Picks -->
+<div class="border border-outline-variant p-6">
+<h3 class="font-label-caps text-label-caps text-primary border-b border-primary pb-2 mb-6">EDITOR'S PICKS</h3>
+<div class="space-y-6">
+<div class="group cursor-pointer">
+<span class="font-label-sm text-label-sm text-secondary mb-1 block">AUGUST 2024</span>
+<h5 class="font-body-md text-body-md font-bold group-hover:underline">The Impact of 5G Connectivity on Remote Fleet Management</h5>
+</div>
+<div class="group cursor-pointer">
+<span class="font-label-sm text-label-sm text-secondary mb-1 block">JULY 2024</span>
+<h5 class="font-body-md text-body-md font-bold group-hover:underline">Digital Twin Simulations for Predictive Maintenance in Turbines</h5>
+</div>
+<div class="group cursor-pointer">
+<span class="font-label-sm text-label-sm text-secondary mb-1 block">JUNE 2024</span>
+<h5 class="font-body-md text-body-md font-bold group-hover:underline">Mitigating Biofouling with Non-Toxic Graphene Coatings</h5>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline mt-20 w-full">
+<div class="w-full py-12 px-margin-desktop max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="anchor">anchor</span>
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">MARITIME TECH</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">© 2024 Institute of Maritime Technologies. Academic Excellence in Engineering.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Research Ethics</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Publication Guidelines</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm" href="#">Contact Support</a>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined p-2 border border-outline-variant rounded-full text-on-surface-variant cursor-pointer hover:bg-surface-variant" data-icon="public">public</span>
+<span class="material-symbols-outlined p-2 border border-outline-variant rounded-full text-on-surface-variant cursor-pointer hover:bg-surface-variant" data-icon="share">share</span>
+</div>
+</div>
+</footer>
+<!-- Mobile Bottom NavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 bg-surface dark:bg-inverse-surface border-t border-outline-variant">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home_storage">home_storage</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span class="font-label-sm text-label-sm">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Progress Indicator for the page
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            let progressBar = document.getElementById("scrollProgress");
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.id = "scrollProgress";
+                progressBar.className = "fixed top-0 left-0 h-1 bg-secondary z-[60] transition-all duration-75";
+                document.body.appendChild(progressBar);
+            }
+            progressBar.style.width = scrolled + "%";
+        });
+
+        // Hover effect for trending tags
+        const tags = document.querySelectorAll('.hide-scrollbar button');
+        tags.forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                tag.style.transform = 'translateY(-2px)';
+            });
+            tag.addEventListener('mouseleave', () => {
+                tag.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>
