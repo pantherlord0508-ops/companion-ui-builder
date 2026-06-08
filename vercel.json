@@ -7,12 +7,9 @@
   "public": true,
   "cleanUrls": true,
   "trailingSlash": false,
-  "env": [
-    {
-      "key": "NODE_ENV",
-      "value": "production"
-    }
-  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
   "rewrites": [
     {
       "source": "/(.*)",
