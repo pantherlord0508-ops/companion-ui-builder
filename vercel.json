@@ -2,13 +2,13 @@
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "framework": "",
+  "framework": "react-router",
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/((?!_next|api|favicon.ico|assets).*)",
+      "source": "/((?!api|favicon.ico|assets).*)",
       "destination": "/index.html"
     }
   ]
